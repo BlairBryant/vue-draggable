@@ -1,57 +1,75 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>
-      For guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <div class='list1'>
+      <draggable v-model="list" @start='stan'>
+      <p class='item' v-for="item in list" :key='item.id'>
+      {{item}}
+      </p>
+      </draggable>
+    </div>
+    <div class='list2'>
+      <draggable v-model="list2">
+      <p class='item2' v-for="item in list2" :key='item.id'>
+      {{item}}
+      </p>
+      </draggable>
+    </div>
   </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 export default {
-  name: 'HelloWorld',
+  components: {
+    draggable
+  },
+  name: "HelloWorld",
+  data() {
+    return {
+      list: [
+        { id: 1, name: "hey" },
+        { id: 2, name: "yo" },
+        { id: 3, name: "nooo" }
+      ],
+      list2: [
+        { id: 4, name: "tennis" },
+        { id: 5, name: "ice" },
+        { id: 6, name: "melty" }
+      ],
+      stan: () => {
+        console.log('hey')
+      }
+    };
+  },
   props: {
     msg: String
   }
-}
+};
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.hello {
+  display: flex;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.list1 {
+  width: 300px;
+  height: 500px;
+  background: lavender;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.list2 {
+  width: 300px;
+  height: 500px;
+  background: lightsalmon;
 }
-a {
-  color: #42b983;
+.item {
+  background: lightgreen;
+  cursor: pointer;
+}
+.item2 {
+  background: lightcyan;
+  cursor: pointer;
 }
 </style>
