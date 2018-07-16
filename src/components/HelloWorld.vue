@@ -72,4 +72,5 @@ export default {
   background: lightcyan;
   cursor: pointer;
 }
+
 </style>
